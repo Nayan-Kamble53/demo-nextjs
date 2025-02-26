@@ -13,7 +13,7 @@ export default function Home() {
       if (window.innerWidth < 1285) {
         setDeferredPrompt(e);
         setShowInstallBtn(true);
-      } 
+      }
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstall);
@@ -41,7 +41,9 @@ export default function Home() {
         <Link href="/about">About Page</Link> <br />
         <Link href="/contact">Contact Page</Link> <br />
         <Link href="/blogs">Blogs Page</Link> <br />
-        <Link href="/products">Products Page</Link>
+        <Link href="/products">Products Page</Link> <br/>
+        <Link href="/qr">QR Page</Link>
+
       </div>
 
       {showInstallBtn && (
