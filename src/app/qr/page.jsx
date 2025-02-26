@@ -8,7 +8,12 @@ const QRPage = () => {
 
   const startScanning = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const constraints = {
+        video: {
+          facingMode: { ideal: "environment" }, // Prioritize back camera
+        },
+      };
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       videoRef.current.srcObject = stream;
 
       const reader = new BrowserMultiFormatReader();
@@ -34,7 +39,12 @@ const QRPage = () => {
     <div>
       <h2>Scan a QR Code</h2>
       <button onClick={startScanning}>Start Scanning</button>
-      <p>Scanned Data: <a href={data !== "No result" ? data : "#"} target="_blank">{data}</a></p>
+      <p>
+        Scanned Data:{" "}
+        <a href={data !== "No result" ? data : "#"} target="_blank" rel="noopener noreferrer">
+          {data}
+        </a>
+      </p>
       <video ref={videoRef} autoPlay playsInline style={{ width: "100%", maxWidth: "400px" }} />
     </div>
   );
